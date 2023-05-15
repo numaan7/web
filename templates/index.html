@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock title %}
+
+{% block body %}
+<section class="section">
+	<div class="container">
+		<div class="row">
+<div class="col-lg-8  mb-5 mb-lg-0">
+   {% if tag %}
+   <h2 class="mb-3">Posts tagged with "{{ tag.name }}"</h2>
+{% endif %}
+   {% for post in posts %}
+   <article class="row mb-5">
+      <div class="col-12">
+         <div class="post-slider">
+            <img loading="lazy" src="{{post.image.url}}" class="img-fluid" alt="image of {{post.title}}">
+         </div>
+      </div>
+      <div class="col-12 mx-auto">
+         <h3><a class="post-title" href="/{{post.url}}">{{post.title|title}}</a></h3>
+         <ul class="list-inline post-meta mb-4">
+            <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="/author/{{post.author}}">{{post.author|title}}</a>
+            </li>
+            <li class="list-inline-item">Date : {{post.publish}}</li>
+            <li class="list-inline-item">Categories : <a href="/category/{{post.category.url}}" class="ml-1">{{post.category.name|title}} </a>
+            </li>
+            <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Photo </a> ,<a href="#!" class="ml-1">Image </a>
+            </li>
+         </ul>
+         <p>{{post.body|capfirst|truncatechars:100}}</p> <a href="/{{post.url}}" class="btn btn-outline-primary">Continue Reading</a>
+      </div>
+   </article>
+   
+   
+   {% if posts.has_other_pages %}
+   <nav aria-label="Page navigation example m-5 mt-3">
+     <ul class="pagination mt-3">
+       {% if posts.has_previous %}
+       <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}"> < </a></li>
+       {% else %}
+       <li class="page-item disabled">
+         <a class="page-link"> < </a>
+       </li>
+       {% endif %}
+       {% for i in posts.paginator.page_range %}
+         {% if posts.number == i %}
+         <li class="page-item active" aria-current="page">
+           <a class="page-link" href="#">{{i}}</a>
+         </li>
+       {% else %}
+       <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+       {% endif %}
+       {% endfor %}
+       {% if posts.has_next %}
+       <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}"> > </a></li>
+      
+       {% else %}
+       <li class="page-item disabled">
+         <a class="page-link"> > </a>
+       </li>
+       {% endif %}
+   
+     </ul>
+   </nav>
+   {% endif %}
+   {% endfor %}
+   
+</div>
+<aside class="col-lg-4">
+   <!-- Search -->
+<div class="widget">
+<h5 class="widget-title"><span>Search</span></h5>
+<form action="/search" class="widget-search">
+<input id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
+<button type="submit"><i class="ti-search"></i>
+</button>
+</form>
+</div>
+<!-- categories -->
+<div class="widget">
+<h5 class="widget-title"><span>Categories</span></h5>
+<ul class="list-unstyled widget-list">
+{% for cat in category %}
+<li><a href="/category/{{cat.url}}" class="d-flex">{{cat.name|title}}
+
+</a>
+</li>
+{% endfor %}
+</ul>
+</div>
+<!-- tags -->
+<div class="widget">
+<h5 class="widget-title"><span>Tags</span></h5>
+<ul class="list-inline widget-list-inline">
+   {% for tag in alltags %}
+<li class="list-inline-item"><a href="/tag/{{tag.slug}}"> {{tag.name}}</a>
+</li>
+{% endfor %}
+
+</ul>
+</div>
+<!-- latest post -->
+<div class="widget">
+<h5 class="widget-title"><span>Latest Article</span></h5>
+<!-- post-item -->
+{% for lp in latestpost %}
+<ul class="list-unstyled widget-list">
+<li class="media widget-post align-items-center">
+<a href="/{{lp.url}}">
+   <img loading="lazy" class="mr-3" src="{{lp.image.url}}">
+</a>
+<div class="media-body">
+   <h5 class="h6 mb-0"><a href="/{{lp.url}}">{{lp.title|title}}</a></h5>
+   <small>{{lp.publish}}</small>
+</div>
+</li>
+</ul>
+{% endfor %}
+
+</div>
+</aside>
+</div>
+</div>
+</section>
+
+{% endblock body %}

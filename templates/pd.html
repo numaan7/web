@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{postdetails.title|title}}{% endblock title %}
+
+{% block body %}
+
+<section class="section">
+	<div class="container">
+			<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="/">Home</a></li>
+					  <li class="breadcrumb-item"><a href="/category/{{postdetails.category.url}}">{{postdetails.category.name|title}}</a></li>
+					  <li class="breadcrumb-item active" aria-current="page">{{postdetails.title|title}}</li>
+					</ol>
+				  </nav>
+		<article class="row mb-4">
+			
+			<div class="col-lg-10 mx-auto mb-4">
+			
+				<h1 class="h2 mb-3">{{postdetails.title|title}}</h1>
+				<ul class="list-inline post-meta mb-3">
+					<li class="list-inline-item"><i class="ti-user mr-2"></i><a href="/author/{{postdetails.author}}">{{postdetails.author|title}}</a>
+					</li>
+					<li class="list-inline-item">Date : {{postdetails.publish}}</li>
+					<li class="list-inline-item">Categories : <a href="/category/{{postdetails.category.url}}" class="ml-1">{{postdetails.category.name|title}} </a>
+					</li>
+					<li class="list-inline-item">Tags : {% for tag in postdetails.tags.all %}<a href="/tag/{{tag.slug}}" class="ml-1">{{tag.name|title}} </a> ,{% endfor %}
+					</li>
+				</ul>
+			</div>
+			<div class="col-12 mb-3">
+				<div class="post-slider slick-initialized slick-slider">
+					<div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: auto; transform: translate3d(0px, 0px, 0px);"><img src="{{postdetails.image.url}}" class="img-fluid slick-slide slick-current slick-active" alt="image of {{postdetails.title}}" data-slick-index="0" aria-hidden="false" tabindex="0" style="width: auto;"></div></div>
+				</div>
+			</div>
+			<div class="col-lg-10 mx-auto">
+				<div class="content">
+					{{postdetails.body|capfirst}}
+				</div>
+			
+					<ul class="list-inline widget-list-inline">
+						{% for tag in postdetails.tags.all %}
+					 <li class="list-inline-item"><a href="/tag/{{tag.slug}}"> {{tag.name}}</a>
+					 </li>
+					 {% endfor %}
+					 
+					 </ul>
+			</div>
+		</article>
+	</div>
+</section>
+<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "BlogPosting",
+	  "headline": "{{postdetails.title|title}}",
+	  "image": "{{postdetails.image.url}}",  
+	  "author": {
+		"@type": "Person",
+		"name": "{{postdetails.author|title}}"
+	  },  
+	  "publisher": {
+		"@type": "Organization",
+		"name": "",
+		"logo": {
+		  "@type": "ImageObject",
+		  "url": ""
+		}
+	  },
+	  "datePublished": "{{postdetails.publish}}"
+	}
+	</script>
+	<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org/", 
+		  "@type": "BreadcrumbList", 
+		  "itemListElement": [{
+			"@type": "ListItem", 
+			"position": 1, 
+			"name": "Blog",
+			"item": "/Blog"  
+		  },{
+			"@type": "ListItem", 
+			"position": 2, 
+			"name": "{{postdetails.category.name|title}}",
+			"item": "/blog/{{postdetails.category.url}}"  
+		  },{
+			"@type": "ListItem", 
+			"position": 3, 
+			"name": "{{postdetails.title|title}}",
+			"item": "/blog/{{postdetails.category.url}}/{{postdetails.url}}"  
+		  }]
+		}
+		</script>
+{% endblock body %}
