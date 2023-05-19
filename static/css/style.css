@@ -22,7 +22,11 @@ body {
   color: #696c6d;
   font-size: 14px;
 }
-
+article img{
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: .25rem!important;
+}
 p, .paragraph {
   font-weight: 400;
   color: #696c6d;

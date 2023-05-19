@@ -26,7 +26,23 @@ class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'date'
     ordering = ('date','name','email')
 
-admin.site.register(Profile)
-  
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user','date',)
+    search_fields = ('user', 'desc','quotes')
+    date_hierarchy = 'date'
+    raw_id_fields = ('user',)
+    ordering = ('date','user','desc')
+    list_filter = ('date', 'user', 'desc', 'quotes')
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('user','date',)
+    search_fields = ('user', 'comment','post')
+    date_hierarchy = 'date'
+    raw_id_fields = ('user',)
+    ordering = ('date','user','post')
+    list_filter = ('date', 'user', 'comment', 'post')
 
     

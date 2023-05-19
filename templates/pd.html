@@ -9,7 +9,7 @@
 			<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 					  <li class="breadcrumb-item"><a href="/">Home</a></li>
-					  <li class="breadcrumb-item"><a href="/category/{{postdetails.category.url}}">{{postdetails.category.name|title}}</a></li>
+					  <li class="breadcrumb-item"><a href="/category/{{postdetails.category.url}}/">{{postdetails.category.name|title}}</a></li>
 					  <li class="breadcrumb-item active" aria-current="page">{{postdetails.title|title}}</li>
 					</ol>
 				  </nav>
@@ -19,23 +19,23 @@
 			
 				<h1 class="h2 mb-3">{{postdetails.title|title}}</h1>
 				<ul class="list-inline post-meta mb-3">
-					<li class="list-inline-item"><i class="ti-user mr-2"></i><a href="/author/{{postdetails.author}}">{{postdetails.author|title}}</a>
+					<li class="list-inline-item"><i class="ti-user mr-2"></i><a href="/user/{{postdetails.author}}/">{{postdetails.author|title}}</a>
 					</li>
 					<li class="list-inline-item">Date : {{postdetails.publish}}</li>
-					<li class="list-inline-item">Categories : <a href="/category/{{postdetails.category.url}}" class="ml-1">{{postdetails.category.name|title}} </a>
+					<li class="list-inline-item">Categories : <a href="/category/{{postdetails.category.url}}/" class="ml-1">{{postdetails.category.name|title}} </a>
 					</li>
 					<li class="list-inline-item">Tags : {% for tag in postdetails.tags.all %}<a href="/tag/{{tag.slug}}" class="ml-1">{{tag.name|title}} </a> ,{% endfor %}
 					</li>
 				</ul>
 			</div>
 			<div class="col-12 mb-3">
-				<div class="post-slider slick-initialized slick-slider">
-					<div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: auto; transform: translate3d(0px, 0px, 0px);"><img src="{{postdetails.image.url}}" class="img-fluid slick-slide slick-current slick-active" alt="image of {{postdetails.title}}" data-slick-index="0" aria-hidden="false" tabindex="0" style="width: auto;"></div></div>
-				</div>
+		
+					<div class="text-center mb-5" ><img src="{{postdetails.image.url}}" class="img-fluid rounded" alt="image of {{postdetails.title}}" ></div>
+
 			</div>
 			<div class="col-lg-10 mx-auto">
 				<div class="content">
-					{{postdetails.body|capfirst}}
+					{{postdetails.body|capfirst|safe}}
 				</div>
 			
 					<ul class="list-inline widget-list-inline">
@@ -45,10 +45,69 @@
 					 {% endfor %}
 					 
 					 </ul>
+					 
+					 
 			</div>
+	
 		</article>
 	</div>
+{% if request.user.is_authenticated %}
+	<form class="m-3" method="POST" action="/{{postdetails.url}}">
+		{% csrf_token %}
+			 
+			 <div class="form-group">
+				 <label for="message">Your Comment Here</label>
+				 <textarea name="comment" id="comment" class="form-control"></textarea>
+			 </div>
+			 <button type="submit" class="btn btn-primary">Post Now</button>
+		 </form>
+		 {% else %}
+		 <a class="m-3" href="/login">Login to post & reply comments.</a>
+		 {% endif %}
+		 {% for comment in comments %}
+		 <div class="card m-3">
+			
+			<div class="card-body">
+				
+				<p class=" ">{{comment.user|title}} - {{comment.date}}</p>
+			  <p class="card-text">{{comment.comment|capfirst}}</p>
+			  {% if comment.replies.all|length > 0 %}
+			  <h5>Replies :</h5>
+			  {% endif %}
+			  {% for reply in comment.replies.all %}
+			  <div class="card mb-2">
+				<div class="card-body">
+					<p class=" ">{{reply.user|title}} - {{comment.date}}</p>
+					<p class="card-text">{{reply.comment|capfirst}}</p>
+				</div>
+			  </div>
+			  {% endfor %}
+{% if request.user.is_authenticated %}
+			  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample{{comment.id}}" aria-expanded="false" aria-controls="collapseExample">
+				Reply
+			  </button>
+			  {% endif %}
+			  <div class="collapse mt-2" id="collapseExample{{comment.id}}">
+				<div class="card card-body">
+					<form class="m-3" method="POST" action="/{{postdetails.url}}">
+						{% csrf_token %}
+							 
+							 <div class="form-group">
+								 <label for="message">Your Reply to {{comment.user|title}}</label>
+								 <textarea name="reply" id="comment" class="form-control"></textarea>
+								 <input type="hidden" name="commentid" value="{{comment.id}}" >
+							 </div>
+							 <button type="submit" class="btn btn-primary">Post Now</button>
+						 </form>
+
+
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  {% endfor %}
 </section>
+
 <script type="application/ld+json">
 	{
 	  "@context": "https://schema.org",

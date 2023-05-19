@@ -15,17 +15,17 @@
                   </div>
                </div>
                <div class="col-12 mx-auto">
-                  <h3><a class="post-title" href="/{{post.url}}">{{post.title|title}}</a></h3>
+                  <h3><a class="post-title" href="/{{post.url}}/">{{post.title|title}}</a></h3>
                   <ul class="list-inline post-meta mb-4">
                      <li class="list-inline-item"><i class="ti-user mr-2"></i><a href="/author/{{post.author}}">{{post.author|title}}</a>
                      </li>
                      <li class="list-inline-item">Date : {{post.publish}}</li>
-                     <li class="list-inline-item">Categories : <a href="/category/{{post.category.url}}" class="ml-1">{{post.category.name|title}} </a>
+                     <li class="list-inline-item">Categories : <a href="/category/{{post.category.url}}/" class="ml-1">{{post.category.name|title}} </a>
                      </li>
-                     <li class="list-inline-item">Tags : <a href="#!" class="ml-1">Photo </a> ,<a href="#!" class="ml-1">Image </a>
+                     <li class="list-inline-item">Tags : {% for tag in post.tags.all %} <a href="/tag/{{tag.slug}}" class="ml-1">{{tag.name|capfirst}} </a> {% endfor %}
                      </li>
                   </ul>
-                  <p>{{post.body|capfirst|truncatechars:100}}</p> <a href="/{{post.url}}" class="btn btn-outline-primary">Continue Reading</a>
+                  <p>{{post.description|capfirst|safe}}</p> <a href="/{{post.url}}/" class="btn btn-outline-primary">Continue Reading</a>
                </div>
             </article>
             
