@@ -1,20 +1,4 @@
-/**
- * WEBSITE: https://themefisher.com
- * TWITTER: https://twitter.com/themefisher
- * FACEBOOK: https://www.facebook.com/themefisher
- * GITHUB: https://github.com/themefisher/
- */
 
-/*!------------------------------------------------------------------
-[MAIN STYLESHEET]
-
-PROJECT:	Project Name
-VERSION:	Versoin Number
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[TABLE OF CONTENTS]
--------------------------------------------------------------------*/
-/*  typography */
 body {
   line-height: 1.7;
   font-family: "Open Sans", sans-serif;
@@ -84,23 +68,23 @@ h6, .h6 {
 }
 
 .btn-primary {
-  background: #ce8460;
+  background: #3b71ca;
   color: #fff;
-  border-color: #ce8460;
+  border-color: #3b71ca;
 }
 .btn-primary:active, .btn-primary:hover, .btn-primary.focus, .btn-primary.active {
-  background: #ce8460 !important;
-  border-color: #ce8460 !important;
+  background: #3b71ca !important;
+  border-color: #3b71ca !important;
 }
 
 .btn-outline-primary {
   background: transparent;
   color: #696c6d;
-  border-color: #ce8460;
+  border-color: #3b71ca;
 }
 .btn-outline-primary:active, .btn-outline-primary:hover, .btn-outline-primary.focus, .btn-outline-primary.active {
-  background: #ce8460 !important;
-  border-color: #ce8460 !important;
+  background: #3b71ca !important;
+  border-color: #3b71ca !important;
   color: #fff;
 }
 
@@ -167,7 +151,7 @@ select:focus {
 }
 
 a:hover {
-  color: #ce8460;
+  color: #3b71ca;
 }
 
 .slick-slide {
@@ -217,11 +201,11 @@ a:hover {
 }
 
 .bg-primary {
-  background: #ce8460 !important;
+  background: #3b71ca !important;
 }
 
 .text-primary {
-  color: #ce8460 !important;
+  color: #3b71ca !important;
 }
 
 .text-color {
@@ -306,7 +290,7 @@ a:hover {
   color: #1c1d1f;
 }
 .navbar-white .navbar-nav .nav-link:hover {
-  color: #ce8460;
+  color: #3b71ca;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -366,7 +350,7 @@ a:hover {
   margin-bottom: 10px;
 }
 .navbar .dropdown-item:hover {
-  color: #ce8460 !important;
+  color: #3b71ca !important;
   background: transparent;
 }
 
@@ -420,7 +404,7 @@ a:hover {
   color: #1c1d1f;
 }
 .post-title:hover {
-  color: #ce8460;
+  color: #3b71ca;
 }
 
 .post-meta li {
@@ -432,7 +416,7 @@ a:hover {
   border-bottom: 1px dotted #ddd;
 }
 .post-meta a:hover {
-  color: #ce8460;
+  color: #3b71ca;
 }
 
 .recent-thumb-alt {
@@ -440,7 +424,7 @@ a:hover {
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  background-color: #ce8460;
+  background-color: #3b71ca;
   text-align: center;
 }
 .recent-thumb-alt::first-letter {
@@ -459,7 +443,7 @@ a:hover {
   font-size: 14px;
 }
 .social-icons a:hover {
-  color: #ce8460;
+  color: #3b71ca;
 }
 
 .social-icons-rounded {
@@ -476,8 +460,8 @@ a:hover {
   border: 1px solid #ddd;
 }
 .social-icons-rounded a:hover {
-  color: #ce8460;
-  border-color: #ce8460;
+  color: #3b71ca;
+  border-color: #3b71ca;
 }
 
 .post-slider {
@@ -522,7 +506,7 @@ a:hover {
   outline: 0;
 }
 .slick-arrow:hover {
-  background: #ce8460;
+  background: #3b71ca;
 }
 
 .prevArrow {
@@ -550,7 +534,7 @@ a:hover {
   color: #696c6d;
 }
 .pagination .page-item .page-link:hover {
-  background: #ce8460;
+  background: #3b71ca;
   color: #fff;
 }
 .pagination .page-item .page-link:focus {
@@ -560,7 +544,7 @@ a:hover {
   border-radius: 50%;
 }
 .pagination .page-item.active .page-link {
-  background: #ce8460;
+  background: #3b71ca;
   color: #fff;
 }
 
@@ -587,7 +571,7 @@ a:hover {
   border-bottom: 1px dotted #ddd;
 }
 .content a:hover {
-  color: #ce8460;
+  color: #3b71ca;
 }
 .content ol,
 .content ul {
@@ -612,7 +596,7 @@ a:hover {
   height: 8px;
   width: 8px;
   border-radius: 50%;
-  background: #ce8460;
+  background: #3b71ca;
   left: 3px;
   top: 8px;
 }
@@ -711,7 +695,7 @@ a:hover {
   font-size: 20px !important;
   color: #696c6d;
   padding: 20px 40px;
-  border-left: 2px solid #ce8460;
+  border-left: 2px solid #3b71ca;
   margin: 40px 0;
   font-weight: bold;
   background: #f0f0f0;
@@ -751,7 +735,7 @@ a:hover {
   display: none;
 }
 .code-tabs .nav-tabs .nav-item.active {
-  background: #ce8460;
+  background: #3b71ca;
 }
 .code-tabs .nav-tabs .nav-item.active .nav-link {
   color: #fff;
@@ -788,7 +772,7 @@ a:hover {
 .form-group .form-control:focus {
   outline: 0;
   box-shadow: none;
-  border-color: #ce8460;
+  border-color: #3b71ca;
 }
 .form-group textarea.form-control {
   height: 120px;
@@ -861,7 +845,7 @@ a:hover {
   color: #1c1d1f;
 }
 .widget-list li a:hover {
-  color: #ce8460;
+  color: #3b71ca;
 }
 .widget-list-inline li {
   margin-bottom: 10px;
@@ -874,8 +858,8 @@ a:hover {
   color: #696c6d;
 }
 .widget-list-inline li a:hover {
-  border-color: #ce8460;
-  background: #ce8460;
+  border-color: #3b71ca;
+  background: #3b71ca;
   color: #fff;
 }
 .widget-post {
@@ -895,7 +879,7 @@ a:hover {
   padding: 5px 0;
 }
 .footer-list a:hover {
-  color: #ce8460;
+  color: #3b71ca;
 }
 
 .subscription .form-control {
@@ -909,7 +893,7 @@ a:hover {
   left: 10px;
   top: 10px;
   font-size: 18px;
-  color: #ce8460;
+  color: #3b71ca;
 }
 
 .quote {
@@ -919,14 +903,14 @@ a:hover {
 }
 .quote i {
   font-size: 24px;
-  color: #ce8460;
+  color: #3b71ca;
   margin-right: 10px;
 }
 .quote p {
   font-style: italic;
 }
 .quote-by {
-  color: #ce8460;
+  color: #3b71ca;
 }
 
 .scroll-top {
@@ -942,7 +926,7 @@ a:hover {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background-color: #ce8460;
+  background-color: #3b71ca;
   color: #fff;
   text-align: center;
   line-height: 50px;

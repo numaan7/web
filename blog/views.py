@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render,redirect
 from .models import * 
+from shop.models import Address
 from django.conf import settings
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -150,6 +151,8 @@ def signup(request):
         
         myuser = User.objects.create_user(username, email, password)
         myuser.save()
+        address=Address(user=myuser)
+        address.save()
         profile=Profile(user=myuser)
         profile.save()
         subject="Account creation successfull!"

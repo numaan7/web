@@ -10,12 +10,16 @@ from ckeditor_uploader.fields import RichTextUploadingField #import this
 class Categorie(models.Model):
     name=models.CharField(max_length=100,unique=True)
     url=models.SlugField(max_length=100,unique=True)
-    def __str___(self):
+    def __str__(self):
         return self.name
+
+   
 class Newsletter(models.Model):
     email=models.EmailField(unique=True)
     def __str__(self):
         return self.email
+    
+
     
 
 
@@ -37,6 +41,8 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     update=models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10,choices=STATUS_CHOICES,default='draft')
+    def __str__(self):
+        return self.title
     
 class Contact(models.Model):
     name=models.CharField(max_length=100)

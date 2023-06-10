@@ -1,6 +1,11 @@
 from django.contrib import admin
 from .models import *
 # Register your models here.
+@admin.register(Categorie)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name','url')
+    search_fields = ('name', 'url')
+    prepopulated_fields = {'url': ('name',)}
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'url', 'author', 'publish', 'status')
@@ -11,12 +16,7 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
 
-@admin.register(Categorie)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name','url')
-    
-    search_fields = ('name', 'url')
-    prepopulated_fields = {'url': ('name',)}
+
 admin.site.register(Newsletter)
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):

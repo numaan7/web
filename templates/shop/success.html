@@ -1,0 +1,18 @@
+{% extends 'shop/index.html' %}
+{% block title %}Thank you!{% endblock title %}
+{% block body %}
+<section class=" my-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body text-center">
+              <h1 class="text-success my-4">Thank you visit again</h1>
+              <p class="font-monospace text-success">Your Order id: {{orderid}}</p>
+              <div class=" mt-5">
+                <a href="/shop/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Conitinue Shopping!</a>
+              </div>
+    
+            </div>
+          </div>
+    </div>
+  </section>
+{% endblock body %}

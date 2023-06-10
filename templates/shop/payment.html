@@ -1,0 +1,50 @@
+{% extends 'shop/index.html' %}
+{% block title %}{% endblock title %}
+{% block body %}
+<section class=" my-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body text-center">
+              <h1>Pay Now</h1>
+              <p class="font-monospace text-danger">Please do not refresh this page.</p>
+              <div class=" mt-5">
+                <button id="rzp-button1" type='button' class="btn btn-success shadow-0 border">Place Order Now</button>
+              </div>
+    
+            </div>
+          </div>
+    </div>
+  </section>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+  var options = {
+    "key": "rzp_test_HO99BTtaXZbsNR", // Enter the Key ID generated from the Dashboard
+    "amount": "{{subtotal}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp", //your business name
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{ payment.id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "http://127.0.0.1:8000/shop/order/status/",
+    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+      "name": "Gaurav Kumar", //your customer's name
+      "email": "gaurav.kumar@example.com",
+      "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+    },
+    "notes": {
+      "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+      "color": "#3399cc"
+    }
+  };
+  var rzp1 = new Razorpay(options);
+  document.getElementById('rzp-button1').onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+  }
+
+
+</script>
+{% endblock body %}

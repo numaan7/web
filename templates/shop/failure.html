@@ -1,0 +1,19 @@
+{% extends 'shop/index.html' %}
+{% block title %}Payment Failure{% endblock title %}
+{% block body %}
+<section class=" my-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body text-center">
+              <h1 class="text-danger my-4">Oops! Payment failure</h1>
+              <p class="font-monospace text-danger">Your Order id: {{orderid}} </p>
+              <p>Looks like your payment has been failed use above order id to know more...</p>
+              <div class=" mt-5">
+                <a href="/shop/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Conitinue Shopping!</a>
+              </div>
+    
+            </div>
+          </div>
+    </div>
+  </section>.
+{% endblock body %}

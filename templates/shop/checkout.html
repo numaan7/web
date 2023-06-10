@@ -1,0 +1,247 @@
+{% extends 'shop/index.html' %}
+{% block title %}Checkout{% endblock title %}
+{% block body %}
+{% load cart_tag %}
+<section class="bg-light py-5">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-8 col-lg-8 mb-4">
+
+        {% if request.user.is_authenticated %}
+
+        {% else %}
+        <div class="card mb-4 border shadow-0">
+          <div class="p-4 d-flex justify-content-between">
+            <div class="">
+              <h5>Have an account?</h5>
+              <p class="mb-0 text-wrap ">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-column flex-md-row">
+              <a href="#" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Register</a>
+              <a href="#" class="btn btn-primary shadow-0 text-nowrap w-100">Sign in</a>
+            </div>
+          </div>
+        </div>
+
+        {% endif %}
+
+        <!-- Checkout -->
+        <div class="card shadow-0 border">
+          <div class="p-4">
+
+
+
+            <h5 class="card-title mb-3">Shipping info</h5>
+
+           
+
+
+              <div class="col-lg-4 mb-3">
+
+
+              
+
+
+            </div>
+           
+              <div class="row">
+                
+                <div class="row mb-3">
+
+                  {% for address in addresses %}
+                  <div class="col-lg-4 mb-3">
+                    <!-- Default checked radio -->
+                    <div class="form-check h-100 border rounded-3">
+                      <div class="p-3">
+                        <form action="/shop/placeorder/done/" method="post">
+                          {% csrf_token %}
+                         
+                        <input class="form-check-input" value="{{address.id}}" type="radio" name="addressid" id="flexRadioDefault1" checked />
+                    <input type="hidden" value="{{subtotal}}" name="price">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                         {{address.address}} <br />
+                          <small class="text-muted">{{address.phone}}</small>
+                        </label>
+                       <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{address.id}}">
+                          Edit
+                        </button>-->
+                                          <!-- Modal -->
+<div class="modal fade" id="exampleModal{{address.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Shipping Address</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+     <!--  <form action="." method="post">
+          {% csrf_token %}
+
+        <div class=" mb-3">
+          <p class="mb-0">First Name:</p>
+          <div class="form-outline">
+            <input name="fname" value="{{address.user.first_name|capfirst}}" required type="text"
+                class="form-control" />
+          </div>
+        </div>
+        <div class=" mb-3">
+          <p class="mb-0">Last Name:</p>
+          <div class="form-outline">
+            <input name="lname" value="{{address.user.last_name|capfirst}}" required type="text" 
+              class="form-control" />
+          </div>
+        </div>
+        <div class="col-sm-8 mb-3">
+          <p class=" mb-0">Address:</p>
+          <div class="form-outline">
+            <input name="address" value="{{address.address|capfirst}}" required type="text" id="typeText"
+              placeholder="Type here" class="form-control" />
+          </div>
+        </div>
+<input value="{{address.id}}" name="id" type="hidden" id="typeText">
+<input value={{subtotal}} type="hidden" name="price">
+        <div class="col-sm-4 mb-3">
+          <p class="mb-0">Phone</p>
+          <div class="form-outline">
+            <input value="{{address.phone}}" name="phone" type="tel" id="typeText"
+              placeholder="Type here" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col-sm-4 mb-3">
+          <p class="mb-0">City</p>
+          <div class="form-outline">
+            <input value="{{address.city|capfirst}}" name='city' required type="text" id="typeText"
+              placeholder="Type here" class="form-control" />
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-6 mb-3">
+          <p class="mb-0">State</p>
+          <div class="form-outline">
+            <input value="{{address.state|capfirst}}" required name="state" type="text" id="typeText"
+              class="form-control" />
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-6 mb-3">
+          <p class="mb-0">Zip</p>
+          <div class="form-outline">
+            <input value="{{address.zip}}" name="zip" required type="text" id="typeText" class="form-control" />
+          </div>
+
+        </div>
+        <div class="float-start ">
+          <button type='submit' class="btn btn-primary shadow-0 border">Save Details</button>
+        </div>
+        </form>--> 
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+
+                
+                  <div class="col-lg-4 mb-3">
+                    <!-- Default radio -->
+                    <div class="form-check h-100 border rounded-3">
+                      <div class="p-3">
+                       
+                          <small class="text-muted">+ Add more addresses </small>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+
+
+               
+            
+          </div>
+
+          
+
+          <div class="float-end">
+
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- Checkout -->
+    </div>
+    <div class="col-xl-4 col-lg-4 d-flex justify-content-center justify-content-lg-end">
+      <div class="ms-lg-4 mt-4 mt-lg-0" style="max-width: 320px;">
+        <h6 class="mb-3">Summary</h6>
+
+        <div class="d-flex justify-content-between">
+          <p class="mb-2">Sub total price:</p>
+          <p class="mb-2">${{cart_total_amount}}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p class="mb-2">Discount:</p>
+          <p class="mb-2">- ${{request.session.discount}}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p class="mb-2">Tax:</p>
+          <p class="mb-2">+ ${{request.session.tax}}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p class="mb-2">Total price:</p>
+          <p class="mb-2">${{request.session.subtotal|floatformat:2}}</p>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <p class="mb-2">Shipping cost:</p>
+          <p class="mb-2">+ $40.00</p>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between">
+          <p class="mb-2">Total price:</p>
+          <p class="mb-2 fw-bold">${{ request.session.subtotal|add:40|floatformat:2 }}</p>
+        </div>
+        <button type="submit" class="btn btn-success w-100 shadow-0 mb-2"> Place Order </button>
+      </form>
+
+
+        <hr />
+        <h6 class="text-dark my-4">Items in cart</h6>
+        {% for key,value in request.session.cart.items %}
+        <div class="d-flex align-items-center mb-4">
+          <div class="me-3 position-relative">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary">
+              {{value.quantity}}
+            </span>
+            <img src="{{value.image}}" style="height: 96px; width: 96x;" class="img-sm rounded border" />
+          </div>
+          <div class="">
+            <a href="/shop/product/{{value.product_id}}/" class="nav-link">
+              {{value.name|title|truncatechars:40}}
+            </a>
+            <div class="price text-muted">Total: ${{value.price|multiply:value.quantity}}</div>
+          </div>
+        </div>
+        {% endfor %}
+
+
+
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+{% endblock body %}
