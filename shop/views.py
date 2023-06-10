@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 from django.contrib import messages
 import razorpay
-client = razorpay.Client(auth=("rzp_test_HO99BTtaXZbsNR", "38eTtrmmz2fGYIkGAgNC5KeL"))
+client = razorpay.Client(auth=("Razor_pay_key", "secret_key"))
 
 razorpay_order_id=''
 razorpay_payment_id=''
